@@ -602,7 +602,9 @@ mark,
     font-size: 90%;
     color: #8898aa;
 }
-
+.conSec {display: inline-block; width: 100%;}
+.contactinfo {display: inline-block; margin: 0 24px 0 0;}
+.contactinfo i {display: inline-block; margin: 0 8px 0 0;}
 code {
     font-size: 87.5%;
     word-break: break-word;
