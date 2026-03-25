@@ -20,26 +20,7 @@
 $(document).ready(function() {
 
     // Collapse navigation
-    $('.navbar-main .collapse').on('hide.bs.collapse', function() {
-        var $this = $(this);
-        $this.addClass('collapsing-out');
-    });
 
-    $('.navbar-main .collapse').on('hidden.bs.collapse', function() {
-        var $this = $(this);
-        $this.removeClass('collapsing-out');
-    });
-
-    $('.navbar-main .dropdown').on('hide.bs.dropdown', function() {
-        var $this = $(this).find('.dropdown-menu');
-
-        $this.addClass('close');
-
-        setTimeout(function() {
-            $this.removeClass('close');
-        }, 200);
-
-    });
 
     // Headroom - show/hide navbar on scroll
     if ($('.headroom')[0]) {
@@ -52,7 +33,6 @@ $(document).ready(function() {
         });
         headroom.init();
     }
-
 
     // Tooltip
     $('[data-toggle="tooltip"]').tooltip();
@@ -69,60 +49,7 @@ $(document).ready(function() {
         })
     });
 
-    // Additional .focus class on form-groups
-    $('.form-control').on('focus blur', function(e) {
-        $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
-    }).trigger('blur');
 
-    // NoUI Slider
-    if ($(".input-slider-container")[0]) {
-        $('.input-slider-container').each(function() {
-
-            var slider = $(this).find('.input-slider');
-            var sliderId = slider.attr('id');
-            var minValue = slider.data('range-value-min');
-            var maxValue = slider.data('range-value-max');
-
-            var sliderValue = $(this).find('.range-slider-value');
-            var sliderValueId = sliderValue.attr('id');
-            var startValue = sliderValue.data('range-value-low');
-
-            var c = document.getElementById(sliderId),
-                d = document.getElementById(sliderValueId);
-
-            noUiSlider.create(c, {
-                start: [parseInt(startValue)],
-                connect: [true, false],
-                //step: 1000,
-                range: {
-                    'min': [parseInt(minValue)],
-                    'max': [parseInt(maxValue)]
-                }
-            });
-
-            c.noUiSlider.on('update', function(a, b) {
-                d.textContent = a[b];
-            });
-        })
-    }
-
-    if ($("#input-slider-range")[0]) {
-        var c = document.getElementById("input-slider-range"),
-            d = document.getElementById("input-slider-range-value-low"),
-            e = document.getElementById("input-slider-range-value-high"),
-            f = [d, e];
-
-        noUiSlider.create(c, {
-            start: [parseInt(d.getAttribute('data-range-value-low')), parseInt(e.getAttribute('data-range-value-high'))],
-            connect: !0,
-            range: {
-                min: parseInt(c.getAttribute('data-range-value-min')),
-                max: parseInt(c.getAttribute('data-range-value-max'))
-            }
-        }), c.noUiSlider.on("update", function(a, b) {
-            f[b].textContent = a[b]
-        })
-    }
 
 
     // When in viewport
@@ -154,7 +81,7 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
-});
+
 
 
 //cursor
@@ -232,12 +159,29 @@ class SlinkyCursor {
 const slinky = new SlinkyCursor();
 slinky.init();
 
-$(document).on('click', 'a[href^="#"]', function (event) {
-    event.preventDefault();
+$(document).ready(function() {
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
 
-    $('html, body').animate({
-        scrollTop: $($.attr(this, 'href')).offset().top
-    }, 2000);
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 2000, function() {
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+        } // End if
+    });
 });
 
 // Clarity
@@ -251,3 +195,4 @@ $(document).on('click', 'a[href^="#"]', function (event) {
     y = l.getElementsByTagName(r)[0];
     y.parentNode.insertBefore(t, y);
 })(window, document, "clarity", "script", "a92mc1tv7r");
+});

@@ -655,7 +655,18 @@ pre code {
     padding-right: 15px;
     padding-left: 15px;
 }
-
+header{
+  position:relative;
+  width: 100%;
+  transition: all 0.2s ease;
+  z-index: 9;
+}
+header.sticky{
+  position:fixed;
+  width: 100%;
+  background: #fff;
+  z-index: 9;
+}
 @media (min-width: 576px) {
     .container {
         max-width: 540px;
@@ -1922,6 +1933,7 @@ pre code {
     .background2 {
         background: transparent;
     }
+    .footerLinks {display: inline-block; text-align: center; width:100%;}
     .contactinfo {
         font-size: 20px !important;
     }
@@ -3497,10 +3509,10 @@ input[type="button"].btn-block {
     opacity: 0;
 }
 
-.collapse:not(.show) {
+/*.collapse:not(.show) {
     display: none;
 }
-
+*/
 .collapsing {
     position: relative;
     overflow: hidden;
@@ -4766,6 +4778,12 @@ input[type="button"].btn-block {
         padding-right: 0;
         padding-left: 0;
     }
+     .nav {display: inline-block;}
+     .nav li {float: left;}
+     .footer .copyright {
+    text-align: center;
+}
+
 }
 
 @media (min-width: 768px) {
@@ -14785,9 +14803,7 @@ textarea[resize="horizontal"] {
     }
 }
 
-.navbar-collapse-header {
-    display: none;
-}
+
 
 @media (max-width: 991.98px) {
     .navbar-nav .nav-link {
@@ -14807,19 +14823,20 @@ textarea[resize="horizontal"] {
         top: 0;
         right: 0;
         left: 0;
-        overflow-y: auto;
-        width: calc(100% - 1.4rem);
+        width:100%;
         height: auto !important;
-        margin: 0.7rem;
-        opacity: 0;
+        padding: 1rem 3rem;
+        background: #fff;
+        display: none;
     }
     .navbar-collapse .navbar-toggler {
-        position: relative;
-        display: inline-block;
+        position: absolute;
         width: 20px;
         height: 20px;
         padding: 0;
         cursor: pointer;
+        right: 3rem;
+        top: 24px;
     }
     .navbar-collapse .navbar-toggler span {
         position: absolute;
@@ -14837,7 +14854,7 @@ textarea[resize="horizontal"] {
         transform: rotate(-135deg);
     }
     .navbar-collapse .navbar-collapse-header {
-        display: block;
+        display: none;
         margin-bottom: 1rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -16883,12 +16900,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     -webkit-transform: perspective(500px);
     transform: perspective(500px);
     box-shadow: 0 20px 70px -10px rgba(211, 86, 86, 0.5), 0 50px 100px 0 rgba(0, 0, 0, 0.1);
+    width: 120px;
+    height: 120px;
 }
 
 .c-logo>img {
     display: block;
-    -webkit-transform: translateZ(50px) scale(0.6);
-    transform: translateZ(50px) scale(0.6);
+    -webkit-transform: translateZ(50px) scale(0.4);
+    transform: translateZ(50px) scale(0.4);
 }
 
 .c-logo:hover:after {
@@ -17645,7 +17664,7 @@ img.rotate.aos-animate {
     div.stamp.aos-animate.scaleIn {
         height: 8rem;
         right: 0px;
-        top: calc(50% - 13rem);
+        top: calc(50% - 14rem);
         width: 8rem;
     }
 }
